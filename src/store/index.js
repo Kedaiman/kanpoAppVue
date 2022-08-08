@@ -36,7 +36,6 @@ export default new Vuex.Store({
       state.analysisId = analysisId
     },
     updateNowQuestion(state, payload) {
-      state.nowQuestion.count++; 
       state.nowQuestion.content = payload.questionContent
       state.nowQuestion.options = payload.optionList
       state.nowQuestion.isNextExist = payload.nextExist
@@ -51,6 +50,14 @@ export default new Vuex.Store({
       state.nowQuestion.options = []
       state.nowQuestion.isNextExist = true
       state.answer = []
+    },
+    decrementCount(state){
+      if (state.nowQuestion.count > 0) {
+        state.nowQuestion.count--;
+      }
+    },
+    incrementCount(state) {
+      state.nowQuestion.count++;
     }
   },
   actions: {
@@ -63,6 +70,7 @@ export default new Vuex.Store({
       .then(text => {
         const responseObj = JSON.parse(text) 
         commit('updateAnalysisId', responseObj.analysisId)
+        commit('incrementCount')
         commit('updateNowQuestion', responseObj)
       })
     },
@@ -71,12 +79,12 @@ export default new Vuex.Store({
     },
     async getAnswer({state, commit}) {
       const url = 'http://localhost:8080/getResult/' + state.analysisId
-      const response = await fetch(url, {method: "get"})
+      const response = await fetch(url, {method: "GET"})
       const responseObj = await response.json()
       commit('updateAnswer', responseObj)
       return responseObj;
     },
-    async sendAnswer({state, dispatch}, answerNum) {
+    async sendAnswer({state, commit, dispatch}, answerNum) {
       const url = 'http://localhost:8080/sendAnswer'
       const data = {
         analysisId: state.analysisId, 
@@ -94,9 +102,21 @@ export default new Vuex.Store({
       // 次の質問が存在している場合
       if (responseObj.nextExist) {
         await dispatch('updateNowQuestion', responseObj)
+        commit('incrementCount')
       } else {
         await dispatch('getAnswer')
       }
+      return responseObj;
+    },
+    async backQuestion({state, commit, dispatch}) {
+      const url = 'http://localhost:8080/backQuestion/' + state.analysisId
+      const response = await fetch(url, {method: 'GET'});
+    
+      const responseObj = await response.json()
+      // storeの質問情報を前の質問に戻す
+      await dispatch('updateNowQuestion', responseObj)
+      // count--
+      commit('decrementCount')
       return responseObj;
     },
     initialize({commit}) {

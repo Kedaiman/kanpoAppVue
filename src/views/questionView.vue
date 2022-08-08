@@ -43,7 +43,7 @@
       <div class="container">
         <div class="row">
           <div v-show="checkTopQuestion()" class="col-6"></div>
-          <button v-show="!checkTopQuestion()" class="btn btn-secondary col-6" @click="backQuestion()">前の質問</button>
+          <button v-show="!checkTopQuestion() && !checkFinishQuestion()" class="btn btn-secondary col-6" @click="backQuestion()">前の質問</button>
           <button v-show="!checkFinishQuestion()" class="btn btn-primary col-6" @click="sendAnswer()">次の質問</button>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default {
       this.$router.push('/question')
    },
     async backQuestion() {
-      await this.$store.dispatch('sendAnswer', this.selected_index)
+      await this.$store.dispatch('backQuestion')
       this.$router.push('/question')
    },
     checkTopQuestion() {
