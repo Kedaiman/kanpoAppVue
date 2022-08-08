@@ -6,18 +6,25 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'start',
-    component: () => import('../views/startView.vue')
+    name: 'roop',
+    component: () => import('../views/topView.vue')
   },
   {
-    path: '/start',
-    name: 'start',
-    component: () => import('../views/startView.vue')
+    path: '/top',
+    name: 'top',
+    component: () => import('../views/topView.vue')
+  },
+  {
+    path: '/question',
+    name: 'question',
+    component: () => import('../views/questionView.vue'),
+    props: true
   },
   {
     path: '/result',
     name: 'result',
-    component: () => import('../views/resultView.vue')
+    component: () => import('../views/resultView.vue'),
+    props: true
   },
   {
     path: '/detail',

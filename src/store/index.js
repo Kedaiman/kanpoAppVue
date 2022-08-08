@@ -43,6 +43,14 @@ export default new Vuex.Store({
     },
     updateAnswer(state, payload) {
       state.answer = payload
+    },
+    initialize(state) {
+      state.analysisId = ""
+      state.nowQuestion.count = 0
+      state.nowQuestion.content = ""
+      state.nowQuestion.options = []
+      state.nowQuestion.isNextExist = true
+      state.answer = []
     }
   },
   actions: {
@@ -90,7 +98,10 @@ export default new Vuex.Store({
         await dispatch('getAnswer')
       }
       return responseObj;
-  }
+    },
+    initialize({commit}) {
+      commit('initialize')
+    }
   },
   modules: {
   }

@@ -1,8 +1,25 @@
 <template>
   <div id="app">
+    <!--
     <nav>
-      <!--<router-link to="/start">Start</router-link>-->
+      <router-link to="/start">Start</router-link>
     </nav>
+    <transition>
+      <router-view/>
+    </transition>
+    -->
+    <header class="py-4">
+      <b-navbar toggleable="sm" type="dark" variant="dark">
+        <b-navbar-brand to="/top">HOME</b-navbar-brand>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item to="/login">LOGIN</b-nav-item>
+            <b-nav-item to="/search">SEARCH</b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
+    </header>
     <router-view/>
   </div>
 </template>
