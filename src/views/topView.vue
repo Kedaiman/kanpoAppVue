@@ -2,9 +2,15 @@
   <main>
     <!-- 解析スタートボタン -->
     <div class="d-grid gap-2 col-6 mx-auto">
-      <button class="btn btn-primary" @click="toStart()">調査スタート &raquo;</button>
+      <button class="btn btn-primary btn-lg" @click="toStart()">調査スタート &raquo;</button>
     </div>
     <!-- メインビジュアル -->
+    <div class="container d-md-none">
+      <div class="jumbotron mt-3">
+        <h2>漢方おすすめアプリ</h2>
+        <p class="lead">あなたの現状に最適な漢方を教えます</p>
+      </div>
+    </div>
     <div class="py-4">
       <div class="container">
         <!-- カルーセル外枠 -->
