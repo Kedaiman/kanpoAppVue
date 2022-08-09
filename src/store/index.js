@@ -61,18 +61,13 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    startAnalysis({commit}) {
+    async startAnalysis({commit}) {
       const url = 'http://localhost:8080/startAnalysis'
-      fetch(url, {
-        method: "get",
-      })
-      .then(response => response.text())
-      .then(text => {
-        const responseObj = JSON.parse(text) 
-        commit('updateAnalysisId', responseObj.analysisId)
-        commit('incrementCount')
-        commit('updateNowQuestion', responseObj)
-      })
+      const response = await fetch(url, {method: "get"})
+      const responseObj = await response.json()
+      commit('updateAnalysisId', responseObj.analysisId)
+      commit('incrementCount')
+      commit('updateNowQuestion', responseObj)
     },
     updateNowQuestion({commit}, payload) {
       commit('updateNowQuestion', payload)

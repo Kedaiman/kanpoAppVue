@@ -1,8 +1,8 @@
 <template>
   <main>
     <!-- 解析スタートボタン -->
-    <div class="d-grid gap-2">
-      <button class="btn btn-primary btn-lg" @click="toStart()">調査スタート</button>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-primary" @click="toStart()">調査スタート &raquo;</button>
     </div>
     <!-- メインビジュアル -->
     <div class="py-4">
@@ -32,10 +32,14 @@
 export default {
   name: 'topComponent',
   methods: {
-    toStart() {
-      this.$store.dispatch('initialize')
-      this.$store.dispatch('startAnalysis')
-      this.$router.push('/question')
+    async toStart() {
+      try {
+        this.$store.dispatch('initialize')
+        await this.$store.dispatch('startAnalysis')
+        this.$router.push('/question')
+      } catch (e) {
+        this.$router.push('/error')
+      }
     }
   }
 }

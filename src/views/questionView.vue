@@ -43,8 +43,8 @@
       <div class="container">
         <div class="row">
           <div v-show="checkTopQuestion()" class="col-6"></div>
-          <button v-show="!checkTopQuestion() && !checkFinishQuestion()" class="btn btn-secondary col-6" @click="backQuestion()">前の質問</button>
-          <button v-show="!checkFinishQuestion()" class="btn btn-primary col-6" @click="sendAnswer()">次の質問</button>
+          <button v-show="!checkTopQuestion() && !checkFinishQuestion()" class="btn btn-secondary col-6" @click="backQuestion()">&laquo; 前の質問</button>
+          <button v-show="!checkFinishQuestion()" class="btn btn-primary col-6" @click="sendAnswer()">次の質問 &raquo;</button>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
       <div class="container">
         <div class="row">
           <div v-show="checkFinishQuestion()" class="col-3"></div>
-          <button v-show="checkFinishQuestion()" class="btn btn-danger col-6" @click="toAnswer()">解析結果表示</button>
+          <button v-show="checkFinishQuestion()" class="btn btn-danger col-6" @click="toAnswer()">解析結果表示 &raquo;</button>
           <div v-show="checkFinishQuestion()" class="col-3"></div>
         </div>
       </div>   
@@ -73,13 +73,21 @@ export default {
   },
   methods: {
     async sendAnswer() {
-      await this.$store.dispatch('sendAnswer', this.selected_index)
-      this.$router.push('/question')
+      try {
+        await this.$store.dispatch('sendAnswer', this.selected_index)
+        this.$router.push('/question')
+      } catch (e) {
+        this.$router.push('/error')
+      }
    },
     async backQuestion() {
-      await this.$store.dispatch('backQuestion')
-      this.$router.push('/question')
-   },
+      try {
+        await this.$store.dispatch('backQuestion')
+        this.$router.push('/question')
+      } catch (e) {
+        this.$router.push('/error')
+      } 
+  },
     checkTopQuestion() {
       return (this.$store.state.nowQuestion.count == 1)
     },

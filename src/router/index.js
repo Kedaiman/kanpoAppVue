@@ -31,7 +31,25 @@ const routes = [
     name: 'detail',
     component: () => import('../views/detailView.vue'),
     props: true
-  }
+  },
+  {
+    path: '/error',
+    name: 'error',
+    component: () => import('../views/errorView.vue'),
+    props: true
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/errorView.vue'),
+    props: true
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('../views/errorView.vue'),
+    props: true
+  }  
 ]
 
 const router = new VueRouter({
