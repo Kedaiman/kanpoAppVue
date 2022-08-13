@@ -38,7 +38,7 @@ export default new Vuex.Store({
     updateNowQuestion(state, payload) {
       state.nowQuestion.content = payload.questionContent
       state.nowQuestion.options = payload.optionList
-      state.nowQuestion.isNextExist = payload.nextExist
+      state.nowQuestion.isNextExist = payload.isNextExist
     },
     updateAnswer(state, payload) {
       state.answer = payload
@@ -95,7 +95,7 @@ export default new Vuex.Store({
     
       const responseObj = await response.json()
       // 次の質問が存在している場合
-      if (responseObj.nextExist) {
+      if (responseObj.isNextExist) {
         await dispatch('updateNowQuestion', responseObj)
         commit('incrementCount')
       } else {
