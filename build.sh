@@ -1,2 +1,2 @@
 #!/bin/bash
-zip -r dist.zip dist
+/usr/bin/zip -r dist.zip dist
