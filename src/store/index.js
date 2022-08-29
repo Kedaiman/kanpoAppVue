@@ -62,7 +62,7 @@ export default new Vuex.Store({
   },
   actions: {
     async startAnalysis({commit}) {
-      const url = 'http://localhost:8080/startAnalysis'
+      const url = '/startAnalysis'
       const response = await fetch(url, {method: "get"})
       const responseObj = await response.json()
       commit('updateAnalysisId', responseObj.analysisId)
@@ -73,14 +73,14 @@ export default new Vuex.Store({
       commit('updateNowQuestion', payload)
     },
     async getAnswer({state, commit}) {
-      const url = 'http://localhost:8080/getResult/' + state.analysisId
+      const url = '/getResult/' + state.analysisId
       const response = await fetch(url, {method: "GET"})
       const responseObj = await response.json()
       commit('updateAnswer', responseObj)
       return responseObj;
     },
     async sendAnswer({state, commit, dispatch}, answerNum) {
-      const url = 'http://localhost:8080/sendAnswer'
+      const url = '/sendAnswer'
       const data = {
         analysisId: state.analysisId, 
         answerNum: answerNum
@@ -104,7 +104,7 @@ export default new Vuex.Store({
       return responseObj;
     },
     async backQuestion({state, commit, dispatch}) {
-      const url = 'http://localhost:8080/backQuestion/' + state.analysisId
+      const url = '/backQuestion/' + state.analysisId
       const response = await fetch(url, {method: 'GET'});
     
       const responseObj = await response.json()
