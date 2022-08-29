@@ -11,7 +11,7 @@
       詳しく見る
     </button>
   </div>
-  <img v-bind:src="require(`@/assets/img/${productImage}`)" alt="" class="img-fluid">
+  <img v-bind:src="require(`@/assets/img/${this.productImageData}`)" alt="" class="img-fluid">
 </div>
 </template>
 
@@ -36,15 +36,26 @@ export default {
       required: true
     }
   },
+  data() {
+    let productImage = this.productImage
+    try {
+      require(`@/assets/img/${this.productImage}`)
+    } catch (e) {
+      productImage = 'noImage.png'
+    }
+    return {
+      productImageData: productImage
+    }
+  },
   methods: {
     detailTo: function() {
       this.$router.push({
         name: "detail", 
         params: {
           name: this.productName,
-          explain: this.detailInfo, 
-          efficacy: "発汗を促すことで熱を下げ、かぜを治そうとします。 最近の西洋医学的な基礎研究でも、抗炎症作用などが確かめられています。 基本的に急性期に用いる薬で、使うのは発病後1～2日が目安とされています。 「葛根湯」はかぜに限らず、鼻炎、頭痛など、炎症が起こって熱が出るような急性の病気の初期にも広く使われます。",
-          image: this.productImage
+          explain: "一言説明 --未実装--", 
+          efficacy: this.detailInfo,
+          image: this.productImageData
         }
       })
     }
