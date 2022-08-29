@@ -1,4 +1,5 @@
 <template>
+  <transition appear>
   <div class="py-4">
     <div class="container">
       <!-- カルーセル外枠 -->
@@ -67,7 +68,8 @@
         </div>
       </div>
     </div>
- </div>
+  </div>
+  </transition>
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -82,7 +84,7 @@ export default {
     async sendAnswer() {
       try {
         await this.$store.dispatch('sendAnswer', this.selected_index)
-        this.$router.push('/question')
+        this.$router.push('/question?count=' + this.$store.state.nowQuestion.count)
       } catch (e) {
         this.$router.push('/error')
       }
@@ -90,7 +92,7 @@ export default {
     async backQuestion() {
       try {
         await this.$store.dispatch('backQuestion')
-        this.$router.push('/question')
+        this.$router.push('/question?count=' + this.$store.state.nowQuestion.count)
       } catch (e) {
         this.$router.push('/error')
       } 
@@ -108,3 +110,27 @@ export default {
   computed: mapGetters(['getNowQuestion', 'getAnswer'])
 }
 </script>
+
+<style scoped>
+.v-enter {
+  transform: translate(-100px, 0);
+  opacity: 0;
+}
+.v-enter-to {
+  opacity: 1;
+}
+.v-enter-active {
+  transition: all 1s 0s ease;
+}
+.v-leave {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+.v-leave-to {
+  transform: translate(100px, 0);
+  opacity: 0;
+}
+.v-leave-active {
+  transition: all .5s 0s ease;
+}
+</style>
