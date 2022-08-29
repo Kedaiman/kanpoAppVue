@@ -31,7 +31,7 @@
     <div class="py-4">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-4">
+          <div class="col-8">
             <template v-for="(value, index) in getNowQuestion().selection_contents">
               <section v-bind:key="value">
                 <div class="form-check">
