@@ -10,20 +10,3 @@
     </div>
   </main>
 </template>
-
-<script>
-export default {
-  name: 'topComponent',
-  methods: {
-    async toStart() {
-      try {
-        this.$store.dispatch('initialize')
-        await this.$store.dispatch('startAnalysis')
-        this.$router.push('/question')
-      } catch (e) {
-        this.$router.push('/error')
-      }
-    }
-  }
-}
-</script>
