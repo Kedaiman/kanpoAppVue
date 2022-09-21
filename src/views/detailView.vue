@@ -19,10 +19,11 @@
             <div class="row p-3">
               <div class="col-md-7 order-md-2">
                 <h4>効能</h4>
-                {{efficacy}}
+                <span>{{efficacy}}</span>
               </div>
               <div class="col-md-5">
-                <img :src="require(`@/assets/img/${image}`)" alt="" class="img-fluid"> </div>
+                <img :src="require(`@/assets/img/${image}`)" alt="" class="img-fluid">
+              </div>
             </div>
           </div>
         </div>
