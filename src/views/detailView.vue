@@ -22,7 +22,7 @@
                 <span>{{efficacy}}</span>
               </div>
               <div class="col-md-5">
-                <img :src="require(`@/assets/img/${image}`)" alt="" class="img-fluid">
+                <img :src="require(`@/assets/img/${this.productImageData}`)" alt="" class="img-fluid">
               </div>
             </div>
           </div>
@@ -52,6 +52,17 @@ export default {
     image: {
       type: String,
       required: true
+    }
+  },
+  data() {
+    let productImage = this.image
+    try {
+      require(`@/assets/img/${this.image}`)
+    } catch (e) {
+      productImage = 'noImage.png'
+    }
+    return {
+      productImageData: productImage
     }
   }
 }

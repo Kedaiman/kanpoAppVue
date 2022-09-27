@@ -13,7 +13,8 @@ export default new Vuex.Store({
       options: [],
       isNextExist: true
     },
-    answer: []
+    answer: [],
+    medicines: []
   },
   getters: {
     getNowQuestion(state) {
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     },
     getAnswer(state) {
       return state.answer
+    },
+    getMedicines(state) {
+      return state.medicines
     }
  },
   mutations: {
@@ -58,6 +62,9 @@ export default new Vuex.Store({
     },
     incrementCount(state) {
       state.nowQuestion.count++;
+    },
+    updateMedicines(state, medicines) {
+      state.medicines = medicines
     }
   },
   actions: {
@@ -116,6 +123,20 @@ export default new Vuex.Store({
     },
     initialize({commit}) {
       commit('initialize')
+    },
+    async getAllMedicines({commit}) {
+      const url = '/searchMedicines?searchWord=&pageSize=100&currentPage=0'
+      const response = await fetch(url, {method: 'GET'})
+      const medicines = await response.json()
+      commit('updateMedicines', medicines) 
+    },
+    async getSearchWordMedicines({commit}, inputObj) {
+      const params = {searchWord: inputObj.searchWord, pageSize: inputObj.pageSize, currentPage: inputObj.currentPage}
+      const query = new URLSearchParams(params)
+      const url = `/searchMedicines?${query}`
+      const response = await fetch(url, {method: 'GET'})
+      const medicines = await response.json()
+      commit('updateMedicines', medicines)  
     }
   },
   modules: {
