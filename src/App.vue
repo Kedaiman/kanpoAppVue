@@ -18,11 +18,36 @@
             <b-nav-item to="/search">SEARCH</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
+        <div class="d-flex" v-if="checkSearch()">
+          <input class="form-control me-2" v-model="searchWord">
+          <button class="btn btn-outline-success" @click="doSearch()">Search</button>
+        </div>
       </b-navbar>
     </header>
     <router-view :key="$route.fullPath"></router-view>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'app',
+  data() {
+    return {
+      searchWord: "" 
+    }
+  },
+  methods: {
+    checkSearch: function() {
+      let regex = new RegExp("^/search")
+      return regex.test(location.pathname)
+    },
+    doSearch: async function() {
+      await this.$store.dispatch('getSearchWordMedicines', {searchWord: this.searchWord, pageSize: 100,currentPage: 0})
+      console.log("aaa")
+   },
+  }
+}
+</script>
 
 <style>
 #app {
