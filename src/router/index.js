@@ -47,7 +47,7 @@ const routes = [
   {
     path: '/search',
     name: 'search',
-    component: () => import('../views/errorView.vue'),
+    component: () => import('../views/searchView.vue'),
     props: true
   }  
 ]

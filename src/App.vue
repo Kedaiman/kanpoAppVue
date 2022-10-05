@@ -8,19 +8,19 @@
       <router-view/>
     </transition>
     -->
-    <header class="py-4">
+    <header class="py-1">
       <b-navbar toggleable="sm" type="dark" variant="dark">
-        <b-navbar-brand to="/top">HOME</b-navbar-brand>
+        <b-navbar-brand to="/top">トップ</b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item to="/login">LOGIN</b-nav-item>
-            <b-nav-item to="/search">SEARCH</b-nav-item>
+            <b-nav-item to="/login">ログイン</b-nav-item>
+            <b-nav-item to="/search">漢方検索</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
         <div class="d-flex" v-if="checkSearch()">
           <input class="form-control me-2" v-model="searchWord">
-          <button class="btn btn-outline-success" @click="doSearch()">Search</button>
+          <button class="btn btn-outline-success" @click="doSearch()">検索</button>
         </div>
       </b-navbar>
     </header>
