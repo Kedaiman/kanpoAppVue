@@ -8,7 +8,7 @@
         <!-- 下段 -->
         <div class="row">
           <div v-for="(answer,index) in getAnswer" :key="answer" class="col-md-4">
-            <CardElement :ranking="index+1" :productName="answer.name" :productImage="answer.imagePath" :detailInfo="answer.detailInfo"></CardElement>
+            <CardElement :ranking="index+1" :productName="answer.name" :productNameKana="answer.nameKana" :productImage="answer.imagePath" :detailInfo="answer.detailInfo"></CardElement>
           </div>
        </div>
         <!-- /下段 -->

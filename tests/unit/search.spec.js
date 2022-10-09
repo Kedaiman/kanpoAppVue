@@ -98,7 +98,7 @@ describe('SearchView test', () => {
         name: 'detail',
         params: {
           name: state.medicines[0].name,
-          explain: "一言説明 --未実装--",
+          nameKana: state.medicines[0].nameKana,
           efficacy: state.medicines[0].detailInfo,
           image: state.medicines[0].imagePath
         }

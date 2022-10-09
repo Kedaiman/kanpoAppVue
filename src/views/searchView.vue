@@ -7,7 +7,7 @@
                         <div class="bg-light p-2 rounded" :key="value.name">
                             <h3>{{value.name}}({{value.nameKana}})</h3>
                             <div>{{value.detailInfo}}</div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal01" @click="detailTo(value.name, value.detailInfo, value.imagePath)">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal01" @click="detailTo(value.name, value.nameKana, value.detailInfo, value.imagePath)">
                                 詳しく見る
                             </button>
                         </div>
@@ -26,12 +26,12 @@ export default {
     await this.$store.dispatch('getAllMedicines')
   },
   methods: {
-    detailTo: function(name, efficacy, image) {
+    detailTo: function(name, nameKana, efficacy, image) {
       this.$router.push({
         name: "detail", 
         params: {
           name: name,
-          explain: "一言説明 --未実装--", 
+          nameKana: nameKana, 
           efficacy: efficacy,
           image: image
         }

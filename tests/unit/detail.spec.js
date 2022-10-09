@@ -10,7 +10,7 @@ localVue.use(VueRouter)
 describe('DetailView screen display', () => {
   // preparing props
   let name = "葛根湯"
-  let explain = "テスト用説明"
+  let nameKana = "かっこんとう"
   let efficacy = "テスト用効能"
   let image = "noImage.png"
 
@@ -18,14 +18,13 @@ describe('DetailView screen display', () => {
     let wrapper = shallowMount(DetailView, {
       propsData: {
         name: name,
-        explain: explain,
+        nameKana: nameKana,
         efficacy: efficacy,
         image: image
       }
     })
     expect(wrapper.find('h3').text()).toBe(name)
-    expect(wrapper.find('p').text()).toBe(explain)
-    expect(wrapper.find('.col-md-7 span').text()).toBe(efficacy)
+    expect(wrapper.find('#efficacy div').text()).toBe(efficacy)
     //expect(wrapper.find('img').attributes()).toEqual(image)
   })
 })

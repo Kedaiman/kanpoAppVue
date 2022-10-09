@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'roop',
+    name: 'root',
     component: () => import('../views/topView.vue')
   },
   {

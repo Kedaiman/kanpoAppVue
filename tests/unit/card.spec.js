@@ -12,12 +12,14 @@ describe('CardElement screen display', () => {
   // preparing props
   let ranking = 1
   let productName = "葛根湯"
+  let productNameKana = "かっこんとう"
   let productImage = "notExist.png"
   let detailInfo = "テスト用詳細情報"
   let wrapper = shallowMount(CardElement, {
     propsData: {
       ranking: ranking,
       productName: productName,
+      productNameKana: productNameKana,
       productImage: productImage,
       detailInfo: detailInfo
     },
@@ -39,7 +41,7 @@ describe('CardElement screen display', () => {
         name: 'detail',
         params: {
           name: productName,
-          explain: "一言説明 --未実装--",
+          nameKana: productNameKana,
           efficacy: detailInfo,
           image: "noImage.png"
         }

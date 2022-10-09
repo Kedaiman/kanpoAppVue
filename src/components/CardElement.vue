@@ -27,6 +27,10 @@ export default {
       type: String,
       required: true
     },
+    productNameKana: {
+      type: String,
+      required: true
+    },
     productImage: {
       type: String,
       required: true
@@ -53,7 +57,7 @@ export default {
         name: "detail", 
         params: {
           name: this.productName,
-          explain: "一言説明 --未実装--", 
+          nameKana: this.productNameKana, 
           efficacy: this.detailInfo,
           image: this.productImageData
         }
