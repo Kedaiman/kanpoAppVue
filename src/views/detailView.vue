@@ -1,36 +1,30 @@
 <template>
-<div>
+  <!-- コンテンツ05 -->
   <div class="py-4">
-    <section id="menu">
+    <section id="information">
       <div class="container">
         <h3 class="mb-3">{{name}}</h3>
-        <p>{{explain}}</p>
-        <!-- タブ型ナビゲーション -->
-        <div class="nav nav-tabs" id="tab-menus" role="tablist">
-          <!-- タブ01 -->
-          <a class="nav-item nav-link active" id="tab-menu01" data-bs-toggle="tab" href="#panel-menu01" role="tab" aria-controls="panel-menu01" aria-selected="true">効能</a>
-       </div>
-        <!-- /タブ型ナビゲーション -->
-
-        <!-- タブパネル -->
-        <div class="tab-content" id="panel-menus">
-          <!-- パネル01 -->
-          <div class="tab-pane fade show active border border-top-0" id="panel-menu01" role="tabpanel" aria-labelledby="tab-menu01">
-            <div class="row p-3">
-              <div class="col-md-7 order-md-2">
-                <h4>効能</h4>
-                <span>{{efficacy}}</span>
-              </div>
-              <div class="col-md-5">
-                <img :src="require(`@/assets/img/${this.productImageData}`)" alt="" class="img-fluid">
-              </div>
-            </div>
+        <div>{{nameKana}}</div>
+        <div class="row">
+          <!-- 左側セクション -->
+          <div class="col-md-6">
+            <section id="efficacy">
+              <h4 class="mb-3">効能</h4>
+              <div>{{efficacy}}</div>
+            </section>
           </div>
+          <!-- /左側セクション -->
+          <!-- 右側セクション -->
+          <div class="col-md-6">
+            <section id="image">
+              <img :src="require(`@/assets/img/${this.productImageData}`)" alt="" class="img-fluid">
+            </section>
+          </div>
+          <!-- /右側セクション -->
         </div>
       </div>
     </section>
   </div>
-</div>
 </template>
 
 <script>
@@ -41,7 +35,7 @@ export default {
       type: String,
       required: true
     },
-    explain: {
+    nameKana: {
       type: String,
       required: true
     },

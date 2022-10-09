@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'roop',
+    name: 'root',
     component: () => import('../views/topView.vue')
   },
   {
@@ -47,7 +47,7 @@ const routes = [
   {
     path: '/search',
     name: 'search',
-    component: () => import('../views/errorView.vue'),
+    component: () => import('../views/searchView.vue'),
     props: true
   }  
 ]
